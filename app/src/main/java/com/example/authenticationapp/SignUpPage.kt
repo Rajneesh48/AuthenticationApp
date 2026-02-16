@@ -45,9 +45,9 @@ fun SignUpPage(){
         Image(painter = painterResource(R.drawable.register),
             contentDescription = "login Image",)
         Spacer(modifier =Modifier.height(8.dp))
-        TextField(value = EtEmail, onValueChange = {EtEmail = it},
+        OutlinedTextField(value = EtEmail, onValueChange = {EtEmail = it},
             modifier = Modifier.fillMaxWidth()
-                .padding(10.dp),
+                .padding(4.dp),
 
             label = {
                 Text(text = "Enter your Email",)
@@ -55,19 +55,17 @@ fun SignUpPage(){
                 focusedContainerColor = Color.White,
                 unfocusedContainerColor = Color.White))
 
-        Spacer(modifier =Modifier.height(4.dp))
 
-        TextField(value = EtPassword, onValueChange = {EtPassword = it},
-            Modifier.fillMaxWidth().padding(10.dp),
+        OutlinedTextField(value = EtPassword, onValueChange = {EtPassword = it},
+            Modifier.fillMaxWidth().padding(4.dp),
             label = {
                 Text(text = "Enter your Password")
             }, colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.White,
                 unfocusedContainerColor = Color.White))
 
-        Spacer(modifier =Modifier.height(4.dp))
-        TextField(value = EtConfirmPassword, onValueChange = {EtConfirmPassword = it},
-            Modifier.fillMaxWidth().padding(10.dp),
+        OutlinedTextField(value = EtConfirmPassword, onValueChange = {EtConfirmPassword = it},
+            Modifier.fillMaxWidth().padding(4.dp),
             label = {
                 Text(text = "Re-Enter your Password")
             }, colors = TextFieldDefaults.colors(
