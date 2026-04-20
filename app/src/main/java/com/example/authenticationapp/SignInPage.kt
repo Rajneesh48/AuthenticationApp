@@ -30,14 +30,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
-@Preview(showBackground = true)
 @Composable
-fun SignInPage(){
+fun SignInPage(navController: NavController){
     var EtEmail by remember { mutableStateOf("") }
     var EtPassword by remember { mutableStateOf("") }
     Column(modifier = Modifier.fillMaxSize(),
@@ -60,6 +61,7 @@ fun SignInPage(){
 
         TextField(value = EtPassword, onValueChange = {EtPassword = it},
             Modifier.fillMaxWidth().padding(10.dp),
+            visualTransformation = PasswordVisualTransformation(),
             label = {
                 Text(text = "Enter your Password")
             }, colors = TextFieldDefaults.colors(
@@ -72,7 +74,9 @@ Text(text = "Forgot Password ?",
     modifier = Modifier.fillMaxWidth().padding(end = 20.dp))
 
         Spacer(modifier =Modifier.height(8.dp))
-        Button(onClick = {},
+        Button(onClick = {
+            navController.navigate("WelcomePage")
+        },
             modifier = Modifier.fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
             shape = RoundedCornerShape(8.dp),

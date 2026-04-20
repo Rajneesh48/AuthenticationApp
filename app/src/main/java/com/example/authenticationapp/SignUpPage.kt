@@ -1,8 +1,6 @@
 package com.example.authenticationapp
 
-import android.R.attr.fontWeight
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,13 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,45 +23,46 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight.Companion.Bold
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
-@Preview(showBackground = true)
+
 @Composable
-fun SignUpPage(){
-    var EtEmail by remember { mutableStateOf("") }
-    var EtPassword by remember { mutableStateOf("") }
-    var EtConfirmPassword by remember { mutableStateOf("") }
+fun SignUpPage(navController: NavController){
+    var etEmail by remember { mutableStateOf("") }
+    var etPassword by remember { mutableStateOf("") }
+    var etConfirmPassword by remember { mutableStateOf("") }
     Column(modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
         Image(painter = painterResource(R.drawable.register),
             contentDescription = "login Image",)
         Spacer(modifier =Modifier.height(8.dp))
-        OutlinedTextField(value = EtEmail, onValueChange = {EtEmail = it},
+        OutlinedTextField(value = etEmail, onValueChange = {etEmail = it},
             modifier = Modifier.fillMaxWidth()
                 .padding(4.dp),
 
             label = {
-                Text(text = "Enter your Email",)
+                Text(text = "Enter your Email")
             }, colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.White,
                 unfocusedContainerColor = Color.White))
 
 
-        OutlinedTextField(value = EtPassword, onValueChange = {EtPassword = it},
+        OutlinedTextField(value = etPassword, onValueChange = {etPassword = it},
             Modifier.fillMaxWidth().padding(4.dp),
+            visualTransformation = PasswordVisualTransformation(),
             label = {
                 Text(text = "Enter your Password")
             }, colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.White,
                 unfocusedContainerColor = Color.White))
 
-        OutlinedTextField(value = EtConfirmPassword, onValueChange = {EtConfirmPassword = it},
+        OutlinedTextField(value = etConfirmPassword, onValueChange = {etConfirmPassword = it},
             Modifier.fillMaxWidth().padding(4.dp),
+            visualTransformation = PasswordVisualTransformation(),
             label = {
                 Text(text = "Re-Enter your Password")
             }, colors = TextFieldDefaults.colors(
@@ -73,7 +70,9 @@ fun SignUpPage(){
                 unfocusedContainerColor = Color.White))
 
         Spacer(modifier =Modifier.height(8.dp))
-        Button(onClick = {},
+        Button(onClick = {
+            navController.navigate("SignInPage")
+        },
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
